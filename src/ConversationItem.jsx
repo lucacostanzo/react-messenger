@@ -3,22 +3,24 @@ import { DateTime } from 'luxon';
 
 function ConversationItem(props) {
   return (
-    <div className="flex flex-grow py-6">
-      <div className="bg-gray-100 flex rounded-2xl ml-3 cursor-pointer p-3 w-96 items-center">
-        <img className="rounded-full w-10 h-10" src={props.Img} />
-        <div className=" mt-1 ml-3 flex flex-col justify-center flex-grow">
-          <p className="text-black font-semibold">{props.Username}</p>
-          <p className="text-gray-400 text-xs font-normal">{props.Message}</p>
+    <div className="flex flex-grow">
+      <div className="bg-white flex flex-grow ml-2 cursor-pointer hover:bg-gray-200 items-center h-full w-full max-w-sm">
+        <img className="rounded-full w-10 h-10" src={props.avatarUrl} />
+        <div className="ml-3 flex flex-col justify-center flex-grow">
+          <p className="text-black font-semibold">{props.username}</p>
+          <div className="">
+            <MessageText {...props} />
+          </div>
         </div>
-        {returnRead(props.isRead)}
-        <p className="text-xs ml-2">{returnDate(props.messDate)}</p>
+        <p className="text-xs">{returnDate(props.updateAt)}</p>
+        <p className="text-xs ml-2">{returnRead(props.isRead)}</p>
       </div>
     </div>
   );
 }
 
 function returnRead(flag) {
-  if (flag == 1) {
+  if (flag == 'true') {
     return (
       <svg
         className="w-4 h-4"
@@ -36,13 +38,27 @@ function returnRead(flag) {
       </svg>
     );
   } else {
+    return <div className="w-4"></div>;
   }
 }
 
-function returnDate() {
-  const date = new Date(2020, 1, 1);
+function MessageText(props) {
+  if (props.isRead == 'false') {
+    return (
+      <p className="truncate w-40 text-gray-600 text-xs">{props.lastMessage}</p>
+    );
+  } else {
+    return (
+      <p className="truncate w-40 text-black font-bold text-xs">
+        {props.lastMessage}
+      </p>
+    );
+  }
+}
+
+function returnDate(date) {
   const dateLuxon = DateTime.fromJSDate(date);
-  const string = dateLuxon.toRelative();
+  const string = dateLuxon.toRelative({ style: 'narrow' });
   return string;
 }
 
