@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 function ConversationItem(props) {
   return (
     <div className="flex flex-grow">
-      <div className="bg-white flex flex-grow ml-2 cursor-pointer hover:bg-gray-200 items-center h-full w-full max-w-sm">
+      <div className="bg-white flex flex-grow ml-2 cursor-pointer hover:bg-gray-200 items-center h-full w-full max-w-sm min-w-min">
         <img className="rounded-full w-10 h-10" src={props.avatarUrl} />
         <div className="ml-3 flex flex-col justify-center flex-grow">
           <p className="text-black font-semibold">{props.username}</p>
@@ -12,15 +12,15 @@ function ConversationItem(props) {
             <MessageText {...props} />
           </div>
         </div>
-        <p className="text-xs">{returnDate(props.updateAt)}</p>
-        <p className="text-xs ml-2">{returnRead(props.isRead)}</p>
+        <p className="text-xs">{ReturnDate(props.updateAt)}</p>
+        <p className="text-xs ml-2">{ReturnRead(props.isRead)}</p>
       </div>
     </div>
   );
 }
 
-function returnRead(flag) {
-  if (flag == 'true') {
+function ReturnRead(flag) {
+  if (flag == true) {
     return (
       <svg
         className="w-4 h-4"
@@ -43,7 +43,7 @@ function returnRead(flag) {
 }
 
 function MessageText(props) {
-  if (props.isRead == 'false') {
+  if (props.isRead == false) {
     return (
       <p className="truncate w-40 text-gray-600 text-xs">{props.lastMessage}</p>
     );
@@ -56,7 +56,7 @@ function MessageText(props) {
   }
 }
 
-function returnDate(date) {
+function ReturnDate(date) {
   const dateLuxon = DateTime.fromJSDate(date);
   const string = dateLuxon.toRelative({ style: 'narrow' });
   return string;
