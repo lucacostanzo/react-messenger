@@ -10,7 +10,13 @@ const listmessage = new Array(11).fill({}).map(() => ({
   lastMessage: faker.lorem.text(),
   isRead: faker.random.boolean(),
   updateAt: faker.date.recent(),
-  contMessages: new Array(20),
+  contMessages: new Array(10).fill({}).map(() => ({
+    direction: faker.random.arrayElement(['sent', 'received']),
+    body: faker.lorem.text(),
+    sentAt: faker.date.past(),
+    receivedAt: faker.date.past(),
+    readAt: faker.date.past(),
+  })),
 }));
 
 function App() {
