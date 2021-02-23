@@ -18,12 +18,12 @@ function SetDirection(props) {
     );
   } else {
     return (
-      <div className="flex items-center pl-3 max-w-2xl">
+      <div className="flex pl-3 max-w-2xl">
         <img
           className="rounded-full w-6 h-6 flex-shrink-0"
           src={faker.image.imageUrl(100, 100, null, true)}
         />
-        <div className="bg-gray-300 cursor-pointer ml-4 rounded-lg mb-2">
+        <div className="bg-gray-300 cursor-pointer ml-2 rounded-lg mb-2">
           <p className="text-left text-sm text-black ml-3 mr-3 py-2">
             {props.body}
           </p>

@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 function ConversationItem(props) {
   return (
     <div className="flex flex-grow">
-      <div className="bg-white flex flex-grow ml-2 cursor-pointer hover:bg-gray-200 items-center h-full w-full max-w-sm min-w-min">
+      <div className="bg-white flex flex-grow ml-2 cursor-pointer hover:bg-gray-200 items-center h-full w-full mr-1 max-w-sm min-w-min">
         <img className="rounded-full w-10 h-10" src={props.avatarUrl} />
         <div className="ml-3 flex flex-col justify-center flex-grow">
           <p className="text-black font-semibold">{props.username}</p>
